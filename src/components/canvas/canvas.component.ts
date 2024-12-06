@@ -6,15 +6,15 @@ import { styleMap } from 'lit/directives/style-map.js';
 
 import { removeGhosting } from '../../utils/dragging.utils.js';
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
+import styles from './canvas.component.css?inline';
 import {
   calculateCenter,
   type Center,
+  defaultCenter,
   diffCenter,
   readCenter,
   storeCenter,
 } from './canvas.utils.js';
-
-import styles from './canvas.component.css?inline';
 
 @customElement('kvlm-canvas')
 export class Canvas extends LitElement {
@@ -23,7 +23,7 @@ export class Canvas extends LitElement {
   #centerDiff?: Omit<Center, 'size'>;
 
   @state()
-  private center: Center = readCenter() ?? { x: 50, y: 50, size: 100 };
+  private center: Center = readCenter() ?? defaultCenter();
 
   @property({ type: Boolean, reflect: true, attribute: 'editing' })
   private isEditing = false;
@@ -33,13 +33,20 @@ export class Canvas extends LitElement {
     if (!this.isEditing) storeCenter(this.center);
   });
 
+  #handleReset = (() => {
+    this.center = readCenter() ?? defaultCenter();
+    this.requestUpdate();
+  }).bind(this);
+
   constructor() {
     super();
+    window.addEventListener('kvlm-reset', this.#handleReset, { passive: true });
     this.addEventListener('dragover', this.handleDragOver, { capture: true });
   }
 
   override disconnectedCallback() {
     this.#removeEditModeListener();
+    window.removeEventListener('kvlm-reset', this.#handleReset);
     this.removeEventListener('dragover', this.handleDragOver, { capture: true });
     super.disconnectedCallback();
   }

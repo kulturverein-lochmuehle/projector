@@ -9,6 +9,15 @@ export function storePosition(position: Square) {
   storeValue(STORAGE_KEY, JSON.stringify(position));
 }
 
+export function defaultPosition(): Square {
+  return {
+    tl: { x: 10, y: 10 },
+    tr: { x: 90, y: 10 },
+    br: { x: 90, y: 90 },
+    bl: { x: 10, y: 90 },
+  };
+}
+
 export function readPosition(): Square | undefined {
   const position = retrieveValue(STORAGE_KEY);
   return position ? JSON.parse(position) : undefined;

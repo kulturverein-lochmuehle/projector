@@ -8,6 +8,10 @@ export function storeCenter(center: Center) {
   storeValue(STORAGE_KEY, JSON.stringify(center));
 }
 
+export function defaultCenter(): Center {
+  return { x: 50, y: 50, size: 100 };
+}
+
 export function readCenter(): Center | undefined {
   const center = retrieveValue(STORAGE_KEY);
   return center ? JSON.parse(center) : undefined;

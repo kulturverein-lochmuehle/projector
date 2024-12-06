@@ -12,7 +12,7 @@
   font-size: 0;
   line-height: 0;
 
-  border-radius: 50%;
+  border-radius: calc(var(---kvlm-handle-size) / 2);
   background-color: var(---kvlm-handle-color);
 
   cursor: pointer;

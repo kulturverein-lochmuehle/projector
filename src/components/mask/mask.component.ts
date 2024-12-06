@@ -7,21 +7,21 @@ import { styleMap } from 'lit/directives/style-map.js';
 
 import { removeGhosting } from '../../utils/dragging.utils.js';
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
-import { readPosition, type Square, storePosition, updatePositionFromEvent } from './mask.utils.js';
-
 import styles from './mask.component.css?inline';
+import {
+  defaultPosition,
+  readPosition,
+  type Square,
+  storePosition,
+  updatePositionFromEvent,
+} from './mask.utils.js';
 
 @customElement('kvlm-mask')
 export class Mask extends LitElement {
   static override readonly styles = unsafeCSS(styles);
 
   @state()
-  private position: Square = readPosition() ?? {
-    tl: { x: 10, y: 10 },
-    tr: { x: 90, y: 10 },
-    br: { x: 90, y: 90 },
-    bl: { x: 10, y: 90 },
-  };
+  private position: Square = readPosition() ?? defaultPosition();
 
   @property({ type: Boolean, reflect: true, attribute: 'editing' })
   private isEditing = false;
@@ -31,13 +31,20 @@ export class Mask extends LitElement {
     if (!this.isEditing) storePosition(this.position);
   });
 
+  #handleReset = (() => {
+    this.position = readPosition() ?? defaultPosition();
+    this.requestUpdate();
+  }).bind(this);
+
   constructor() {
     super();
+    window.addEventListener('kvlm-reset', this.#handleReset, { passive: true });
     this.addEventListener('dragover', this.handleDragOver, { capture: true });
   }
 
   override disconnectedCallback() {
     this.#removeEditModeListener();
+    window.removeEventListener('kvlm-reset', this.#handleReset);
     this.removeEventListener('dragover', this.handleDragOver, { capture: true });
     super.disconnectedCallback();
   }

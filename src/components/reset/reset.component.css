@@ -1,0 +1,28 @@
+:host {
+  position: fixed;
+  inset: auto 20px 20px auto;
+
+  display: none;
+}
+
+:host([editing]) {
+  display: block;
+}
+
+kvlm-handle {
+  padding: 0 10px;
+  width: auto;
+
+  font-size: inherit;
+  line-height: 30px;
+  white-space: nowrap;
+  color: #000;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    opacity: 0.75;
+  }
+}
