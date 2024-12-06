@@ -1,3 +1,5 @@
+import '../player/player.component.js';
+
 import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, eventOptions, property, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
@@ -114,7 +116,7 @@ export class Canvas extends LitElement {
         @dragend="${this.handleDragEnd}"
         @wheel="${this.handleWheel}"
       >
-        ${unsafeHTML(testCard)}
+        <kvlm-player>${unsafeHTML(testCard)}</kvlm-player>
       </figure>
     `;
   }

@@ -13,15 +13,13 @@ figure {
   height: 100%;
   width: auto;
   transform: translate(-50%, -50%);
+}
 
-  > * {
-    display: block;
-    height: 100%;
-    width: auto;
-    object-fit: cover;
+kvlm-player {
+  height: 100%;
+  width: auto;
 
-    :host([editing]) & {
-      cursor: move;
-    }
+  :host([editing]) & {
+    cursor: move;
   }
 }
