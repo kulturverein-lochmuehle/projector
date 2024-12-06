@@ -9,15 +9,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "lint": "eslint --flag unstable_ts_config -c eslint.config.ts",
+    "dev": "vite dev",
+    "build": "vite build"
   },
   "dependencies": {
     "lit": "3.2.1"
   },
   "devDependencies": {
+    "@enke.dev/lint": "0.1.0",
+    "eslint": "9.16.0",
+    "jiti": "2.4.1",
+    "prettier": "3.4.2",
     "typescript": "5.7.2",
+    "typescript-eslint": "8.17.0",
     "vite": "6.0.3",
     "vite-plugin-checker": "0.8.0",
     "vite-plugin-mkcert": "1.17.6"
