@@ -30,6 +30,7 @@ export class Canvas extends LitElement {
   #removeEditModeListener = addEditModeListener(down => {
     if (!down) return;
     this.isEditing = !this.isEditing;
+    if (!this.isEditing) storeCenter(this.center);
   });
 
   constructor() {
@@ -77,7 +78,6 @@ export class Canvas extends LitElement {
 
     const center = calculateCenter(event, this.#centerDiff!);
     this.center = { ...this.center, ...center };
-    storeCenter(this.center);
 
     const handle = event.target as HTMLElement;
     delete handle.dataset.dragging;
@@ -96,7 +96,6 @@ export class Canvas extends LitElement {
     const delta = event.deltaY / 10;
     const size = Math.min(Math.max(this.center.size + delta, 10), 150);
     this.center = { ...this.center, size };
-    storeCenter(this.center);
   }
 
   protected override render() {

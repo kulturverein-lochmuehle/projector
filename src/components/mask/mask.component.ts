@@ -28,6 +28,7 @@ export class Mask extends LitElement {
   #removeEditModeListener = addEditModeListener(down => {
     if (!down) return;
     this.isEditing = !this.isEditing;
+    if (!this.isEditing) storePosition(this.position);
   });
 
   constructor() {
@@ -77,7 +78,6 @@ export class Mask extends LitElement {
     const point = handle.dataset.maskPoint as keyof Square;
     const value = updatePositionFromEvent(event, point);
     this.position = { ...this.position, [point]: value };
-    storePosition(this.position);
 
     delete handle.dataset.dragging;
   }
