@@ -1,5 +1,6 @@
 type EditModeListener = (editMode: boolean) => void;
 
+let isEditing = false;
 const editModeListeners = new Set<EditModeListener>();
 
 // manage listeners for editing mode
@@ -15,7 +16,7 @@ window.addEventListener(
   'keydown',
   event => {
     if (event.key === 'Alt') {
-      editModeListeners.forEach(listener => listener(true));
+      editModeListeners.forEach(listener => listener(isEditing));
     }
   },
   { passive: true },
@@ -25,7 +26,8 @@ window.addEventListener(
   'keyup',
   event => {
     if (event.key === 'Alt') {
-      editModeListeners.forEach(listener => listener(false));
+      isEditing = !isEditing;
+      editModeListeners.forEach(listener => listener(isEditing));
     }
   },
   { passive: true },

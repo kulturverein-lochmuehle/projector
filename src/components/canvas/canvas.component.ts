@@ -29,9 +29,8 @@ export class Canvas extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'editing' })
   isEditing = false;
 
-  #removeEditModeListener = addEditModeListener(down => {
-    if (!down) return;
-    this.isEditing = !this.isEditing;
+  #removeEditModeListener = addEditModeListener(isEditing => {
+    this.isEditing = isEditing;
     if (!this.isEditing) storeCenter(this.center);
   });
 
