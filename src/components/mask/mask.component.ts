@@ -7,8 +7,9 @@ import { styleMap } from 'lit/directives/style-map.js';
 
 import { removeGhosting } from '../../utils/dragging.utils.js';
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
-import styles from './mask.component.css?inline';
 import { readPosition, type Square, storePosition, updatePositionFromEvent } from './mask.utils.js';
+
+import styles from './mask.component.css?inline';
 
 @customElement('kvlm-mask')
 export class Mask extends LitElement {
@@ -23,7 +24,7 @@ export class Mask extends LitElement {
   };
 
   @property({ type: Boolean, reflect: true, attribute: 'editing' })
-  isEditing = false;
+  private isEditing = false;
 
   #removeEditModeListener = addEditModeListener(isEditing => {
     this.isEditing = isEditing;
