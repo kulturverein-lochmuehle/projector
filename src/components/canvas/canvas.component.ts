@@ -3,12 +3,9 @@ import '../player/player.component.js';
 import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, eventOptions, property, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-import testCard from '../../assets/FuBK_testcard_vectorized.svg?raw';
 import { removeGhosting } from '../../utils/dragging.utils.js';
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
-import styles from './canvas.component.css?inline';
 import {
   calculateCenter,
   type Center,
@@ -16,6 +13,8 @@ import {
   readCenter,
   storeCenter,
 } from './canvas.utils.js';
+
+import styles from './canvas.component.css?inline';
 
 @customElement('kvlm-canvas')
 export class Canvas extends LitElement {
@@ -115,7 +114,7 @@ export class Canvas extends LitElement {
         @dragend="${this.handleDragEnd}"
         @wheel="${this.handleWheel}"
       >
-        <kvlm-player>${unsafeHTML(testCard)}</kvlm-player>
+        <kvlm-player></kvlm-player>
       </figure>
     `;
   }

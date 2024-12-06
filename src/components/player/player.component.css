@@ -1,7 +1,31 @@
-:host > *,
-::slotted(*) {
+svg {
+  position: absolute;
+  inset: -5px;
+  height: calc(100% + 10px);
+  width: calc(100% + 10px);
+
+  > rect {
+    fill: none;
+    stroke: #f4f4f4;
+    stroke-width: 5px;
+    stroke-dasharray: 10px;
+    vector-effect: non-scaling-stroke;
+
+    display: none;
+
+    :host([editing]) & {
+      display: block;
+    }
+  }
+}
+
+#media {
   display: block;
   height: 100%;
   width: auto;
   object-fit: cover;
+
+  :host([interactive]) & {
+    opacity: 0.5;
+  }
 }
