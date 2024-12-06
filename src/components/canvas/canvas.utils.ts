@@ -1,4 +1,4 @@
-import { storeValue, retrieveValue } from '../../utils/storage.utils.js';
+import { retrieveValue, storeValue } from '../../utils/storage.utils.js';
 
 export type Center = { x: number; y: number; size: number };
 

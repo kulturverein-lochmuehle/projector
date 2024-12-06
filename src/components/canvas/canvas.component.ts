@@ -3,18 +3,17 @@ import { customElement, eventOptions, property, state } from 'lit/decorators.js'
 import { styleMap } from 'lit/directives/style-map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
+import testCard from '../../assets/FuBK_testcard_vectorized.svg?raw';
 import { removeGhosting } from '../../utils/dragging.utils.js';
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
+import styles from './canvas.component.css?inline';
 import {
+  calculateCenter,
   type Center,
   diffCenter,
   readCenter,
   storeCenter,
-  calculateCenter,
 } from './canvas.utils.js';
-
-import testCard from '../../assets/FuBK_testcard_vectorized.svg?raw';
-import styles from './canvas.component.css?inline';
 
 @customElement('kvlm-canvas')
 export class Canvas extends LitElement {
