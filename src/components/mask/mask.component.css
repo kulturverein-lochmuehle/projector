@@ -1,0 +1,49 @@
+:host {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+svg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+
+  > rect {
+    fill: black;
+
+    :host([editing]) & {
+      opacity: 0.5;
+    }
+  }
+
+  > polygon {
+    fill: none;
+    stroke: #f4f4f4;
+    stroke-width: 5px;
+    stroke-dasharray: 10px;
+    vector-effect: non-scaling-stroke;
+
+    display: none;
+
+    :host([editing]) & {
+      display: block;
+    }
+  }
+}
+
+kvlm-handle {
+  --kvlm-handle-color: #f4f4f4;
+  position: absolute;
+  inset: 0;
+
+  display: none;
+  pointer-events: all;
+
+  :host([editing]) & {
+    display: block;
+  }
+}
