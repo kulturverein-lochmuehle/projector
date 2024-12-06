@@ -102,6 +102,10 @@ export class Player extends LitElement {
     return html`<img id="media" src=${this.file.url} alt="${this.file?.name}" />`;
   }
 
+  #renderVideo() {
+    return html`<video id="media" src=${this.file.url} autoplay loop></video>`;
+  }
+
   protected override render() {
     return html`
       ${when(
@@ -112,13 +116,18 @@ export class Player extends LitElement {
           </svg>
         `,
       )}
-      ${choose(this.file?.type, [
-        ['image/jpg', () => this.#renderImage()],
-        ['image/jpeg', () => this.#renderImage()],
-        ['image/png', () => this.#renderImage()],
-        ['image/svg+xml', () => this.#renderImage()],
-        ['video/mp4', () => html`<video id="media" src=${this.file.url} autoplay></video>`],
-      ])}
+      ${choose(
+        this.file?.type,
+        [
+          ['image/jpg', () => this.#renderImage()],
+          ['image/jpeg', () => this.#renderImage()],
+          ['image/png', () => this.#renderImage()],
+          ['image/svg+xml', () => this.#renderImage()],
+          ['video/mp4', () => this.#renderVideo()],
+          ['video/webm', () => this.#renderVideo()],
+        ],
+        () => html`<p id="media">Unsupported file type</p>`,
+      )}
     `;
   }
 }
