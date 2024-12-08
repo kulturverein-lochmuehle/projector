@@ -6,6 +6,7 @@
     "email": "david@kvlm.de",
     "name": "David Enke"
   },
+  "license": "MIT",
   "private": true,
   "type": "module",
   "scripts": {
