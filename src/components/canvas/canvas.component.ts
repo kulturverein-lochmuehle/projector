@@ -6,15 +6,16 @@ import { styleMap } from 'lit/directives/style-map.js';
 
 import { removeGhosting } from '../../utils/dragging.utils.js';
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
-import styles from './canvas.component.css?inline';
+import type { Center } from './canvas.utils.js';
 import {
   calculateCenter,
-  type Center,
   defaultCenter,
   diffCenter,
   readCenter,
   storeCenter,
 } from './canvas.utils.js';
+
+import styles from './canvas.component.css?inline';
 
 @customElement('kvlm-canvas')
 export class Canvas extends LitElement {
@@ -70,7 +71,8 @@ export class Canvas extends LitElement {
     event.preventDefault();
     removeGhosting(event);
 
-    const center = calculateCenter(event, this.#centerDiff!);
+    if (this.#centerDiff === undefined) return;
+    const center = calculateCenter(event, this.#centerDiff);
     this.center = { ...this.center, ...center };
   }
 
@@ -83,7 +85,8 @@ export class Canvas extends LitElement {
   private handleDragEnd(event: DragEvent) {
     event.preventDefault();
 
-    const center = calculateCenter(event, this.#centerDiff!);
+    if (this.#centerDiff === undefined) return;
+    const center = calculateCenter(event, this.#centerDiff);
     this.center = { ...this.center, ...center };
 
     const handle = event.target as HTMLElement;

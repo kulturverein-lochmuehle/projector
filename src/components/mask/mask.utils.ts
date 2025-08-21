@@ -1,7 +1,15 @@
 import { retrieveValue, storeValue } from '../../utils/storage.utils.js';
 
-export type Point = { x: number; y: number };
-export type Square = { tl: Point; tr: Point; br: Point; bl: Point };
+export interface Point {
+  x: number;
+  y: number;
+}
+export interface Square {
+  tl: Point;
+  tr: Point;
+  br: Point;
+  bl: Point;
+}
 
 export const STORAGE_KEY = 'mask';
 

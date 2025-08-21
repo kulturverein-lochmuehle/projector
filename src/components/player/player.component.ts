@@ -3,16 +3,16 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { choose } from 'lit/directives/choose.js';
 import { when } from 'lit/directives/when.js';
 
+import testCard from '../../assets/FuBK_testcard_vectorized.svg?url';
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
 
-import testCard from '../../assets/FuBK_testcard_vectorized.svg?url';
 import styles from './player.component.css?inline';
 
-type PlayerFile = {
+interface PlayerFile {
   type: string;
   name: string;
   url: string;
-};
+}
 
 @customElement('kvlm-player')
 export class Player extends LitElement {

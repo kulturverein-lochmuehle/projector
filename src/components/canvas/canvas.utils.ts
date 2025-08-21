@@ -1,6 +1,10 @@
 import { retrieveValue, storeValue } from '../../utils/storage.utils.js';
 
-export type Center = { x: number; y: number; size: number };
+export interface Center {
+  x: number;
+  y: number;
+  size: number;
+}
 
 export const STORAGE_KEY = 'canvas';
 

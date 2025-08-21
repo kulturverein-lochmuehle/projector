@@ -7,14 +7,15 @@ import { styleMap } from 'lit/directives/style-map.js';
 
 import { removeGhosting } from '../../utils/dragging.utils.js';
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
-import styles from './mask.component.css?inline';
+import type { Square } from './mask.utils.js';
 import {
   defaultPosition,
   readPosition,
-  type Square,
   storePosition,
   updatePositionFromEvent,
 } from './mask.utils.js';
+
+import styles from './mask.component.css?inline';
 
 @customElement('kvlm-mask')
 export class Mask extends LitElement {

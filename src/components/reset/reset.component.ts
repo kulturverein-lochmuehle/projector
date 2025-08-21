@@ -5,6 +5,7 @@ import { customElement, eventOptions, property } from 'lit/decorators.js';
 
 import { addEditModeListener } from '../../utils/edit-mode.utils.js';
 import { reset } from '../../utils/storage.utils.js';
+
 import styles from './reset.component.css?inline';
 
 @customElement('kvlm-reset')
