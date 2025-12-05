@@ -43,7 +43,7 @@ export function diffCenter(event: DragEvent): Omit<Center, 'size'> {
 
 export function calculateCenter(
   event: DragEvent,
-  delta: Omit<Center, 'size'>,
+  delta: Omit<Center, 'size'>
 ): Omit<Center, 'size'> {
   const { offsetHeight, offsetWidth } = document.body;
   const mouseCenter = {

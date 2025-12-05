@@ -19,7 +19,7 @@ window.addEventListener(
       editModeListeners.forEach(listener => listener(isEditing));
     }
   },
-  { passive: true },
+  { passive: true }
 );
 
 window.addEventListener(
@@ -30,5 +30,5 @@ window.addEventListener(
       editModeListeners.forEach(listener => listener(isEditing));
     }
   },
-  { passive: true },
+  { passive: true }
 );

@@ -3,19 +3,22 @@
   ---kvlm-handle-size: var(--kvlm-handle-size, 30px);
 }
 
+/* stylelint-disable-next-line no-duplicate-selectors */
 :host {
   display: block;
-  height: var(---kvlm-handle-size);
   width: var(---kvlm-handle-size);
-  transform: translate(calc(var(---kvlm-handle-size) / -2), calc(var(---kvlm-handle-size) / -2));
+  height: var(---kvlm-handle-size);
 
   font-size: 0;
   line-height: 0;
 
-  border-radius: calc(var(---kvlm-handle-size) / 2);
   background-color: var(---kvlm-handle-color);
 
+  border-radius: calc(var(---kvlm-handle-size) / 2);
+  transform: translate(calc(var(---kvlm-handle-size) / -2), calc(var(---kvlm-handle-size) / -2));
+
   cursor: pointer;
+
   user-select: none;
 }
 

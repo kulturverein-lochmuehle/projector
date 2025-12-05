@@ -10,13 +10,14 @@
 }
 
 kvlm-handle {
-  padding: 0 10px;
   width: auto;
+  padding: 0 10px;
+
+  color: #000;
 
   font-size: inherit;
   line-height: 30px;
   white-space: nowrap;
-  color: #000;
 
   &:hover {
     opacity: 0.85;

@@ -1,17 +1,18 @@
 svg {
   position: absolute;
-  inset: -5px;
-  height: calc(100% + 10px);
+
   width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  inset: -5px;
 
   > rect {
+    display: none;
+
     fill: none;
     stroke: #f4f4f4;
     stroke-width: 5px;
     stroke-dasharray: 10px;
     vector-effect: non-scaling-stroke;
-
-    display: none;
 
     :host([editing]) & {
       display: block;
@@ -21,8 +22,8 @@ svg {
 
 #media {
   display: block;
-  height: 100%;
   width: auto;
+  height: 100%;
   object-fit: cover;
 
   :host([interactive]) & {
@@ -32,12 +33,12 @@ svg {
   p& {
     display: flex;
 
-    aspect-ratio: 1;
-    margin: 0;
-
     align-items: center;
     justify-content: center;
+    margin: 0;
 
     background-color: #333;
+
+    aspect-ratio: 1;
   }
 }

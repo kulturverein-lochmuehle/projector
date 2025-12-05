@@ -1,4 +1,7 @@
-import config from '@enke.dev/lint';
-import eslintTs from 'typescript-eslint';
+import config, { setTsConfigRootDir } from '@enke.dev/lint';
+import { defineConfig } from 'eslint/config';
 
-export default eslintTs.config(...config);
+export default defineConfig({
+  ...config,
+  ...setTsConfigRootDir(import.meta.dirname),
+});

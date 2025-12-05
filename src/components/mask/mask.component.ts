@@ -128,7 +128,7 @@ export class Mask extends LitElement {
           >
             ${key}
           </kvlm-handle>
-        `,
+        `
       )}
     `;
   }

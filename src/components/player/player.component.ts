@@ -99,7 +99,7 @@ export class Player extends LitElement {
   }
 
   #renderImage() {
-    return html`<img id="media" src=${this.file.url} alt="${this.file?.name}" />`;
+    return html`<img id="media" src=${this.file.url} alt="${this.file?.name}">`;
   }
 
   #renderVideo() {
@@ -114,7 +114,7 @@ export class Player extends LitElement {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect x="0" y="0" width="100" height="100" />
           </svg>
-        `,
+        `
       )}
       ${choose(
         this.file?.type,
@@ -126,7 +126,7 @@ export class Player extends LitElement {
           ['video/mp4', () => this.#renderVideo()],
           ['video/webm', () => this.#renderVideo()],
         ],
-        () => html`<p id="media">Unsupported file type</p>`,
+        () => html`<p id="media">Unsupported file type</p>`
       )}
     `;
   }

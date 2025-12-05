@@ -27,17 +27,20 @@ projector was created to help display video content on irregular surfaces or spe
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/kulturverein-lochmuehle/projector.git
 cd projector
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
