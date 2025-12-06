@@ -1,3 +1,5 @@
+import '../animation/animation.component.js';
+
 import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { choose } from 'lit/directives/choose.js';
@@ -24,6 +26,9 @@ export class Player extends LitElement {
   @property({ type: Boolean, reflect: true })
   // @ts-expect-error: unused property used for reflection
   private interactive = false;
+
+  @property({ type: Boolean, reflect: true, attribute: 'animating' })
+  private isAnimating = false;
 
   @property({ type: Boolean, reflect: true, attribute: 'editing' })
   private isEditing = false;
@@ -81,12 +86,18 @@ export class Player extends LitElement {
     reader.readAsDataURL(file);
   }).bind(this);
 
+  #handleAnimate = ((event: Event) => {
+    const { detail } = event as WindowEventMap['kvlm-animate'];
+    this.isAnimating = detail;
+  }).bind(this);
+
   constructor() {
     super();
     this.addEventListener('dragenter', this.#handleDragEnter, { capture: true });
     this.addEventListener('dragover', this.#handleDragOver, { capture: true });
     this.addEventListener('dragleave', this.#handleDragLeave, { capture: true });
     window.addEventListener('drop', this.#handleDrop, { capture: true });
+    window.addEventListener('kvlm-animate', this.#handleAnimate);
   }
 
   override disconnectedCallback() {
@@ -95,6 +106,7 @@ export class Player extends LitElement {
     this.removeEventListener('dragover', this.#handleDragOver, { capture: true });
     this.removeEventListener('dragleave', this.#handleDragLeave, { capture: true });
     window.removeEventListener('drop', this.#handleDrop, { capture: true });
+    window.removeEventListener('kvlm-animate', this.#handleAnimate);
     super.disconnectedCallback();
   }
 
@@ -109,24 +121,29 @@ export class Player extends LitElement {
   protected override render() {
     return html`
       ${when(
-        this.isEditing,
+        this.isEditing && !this.isAnimating,
         () => html`
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect x="0" y="0" width="100" height="100" />
           </svg>
         `
       )}
-      ${choose(
-        this.file?.type,
-        [
-          ['image/jpg', () => this.#renderImage()],
-          ['image/jpeg', () => this.#renderImage()],
-          ['image/png', () => this.#renderImage()],
-          ['image/svg+xml', () => this.#renderImage()],
-          ['video/mp4', () => this.#renderVideo()],
-          ['video/webm', () => this.#renderVideo()],
-        ],
-        () => html`<p id="media">Unsupported file type</p>`
+      ${when(
+        this.isAnimating,
+        () => html`<kvlm-animation></kvlm-animation>`,
+        () =>
+          choose(
+            this.file?.type,
+            [
+              ['image/jpg', () => this.#renderImage()],
+              ['image/jpeg', () => this.#renderImage()],
+              ['image/png', () => this.#renderImage()],
+              ['image/svg+xml', () => this.#renderImage()],
+              ['video/mp4', () => this.#renderVideo()],
+              ['video/webm', () => this.#renderVideo()],
+            ],
+            () => html`<p id="media">Unsupported file type</p>`
+          )
       )}
     `;
   }

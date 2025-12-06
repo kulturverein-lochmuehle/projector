@@ -38,7 +38,6 @@ svg {
 }
 
 kvlm-handle {
-  --kvlm-handle-color: #f4f4f4;
   position: absolute;
   inset: 0;
 

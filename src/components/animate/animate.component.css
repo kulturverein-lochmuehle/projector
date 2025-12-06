@@ -1,6 +1,6 @@
 :host {
   position: fixed;
-  inset: auto 20px 20px auto;
+  inset: auto 20px 60px auto;
 
   display: none;
 }

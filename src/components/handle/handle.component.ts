@@ -1,11 +1,14 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 import styles from './handle.component.css?inline';
 
 @customElement('kvlm-handle')
 export class Handle extends LitElement {
   static override readonly styles = unsafeCSS(styles);
+
+  @property({ type: Boolean, reflect: true })
+  inverted = false;
 
   protected override render() {
     return html`<slot></slot>`;
