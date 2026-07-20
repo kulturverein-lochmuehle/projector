@@ -17,21 +17,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # shared validation, also reused by update-dependencies.yml against the bumped branch
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-artifact@v4
-        if: success() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        with:
-          name: latest
-          path: dist
+    uses: ./.github/workflows/check.yml
 
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
