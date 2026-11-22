@@ -10,11 +10,12 @@
   width: var(---kvlm-handle-size);
   height: var(---kvlm-handle-size);
 
+  color: var(---kvlm-handle-color);
+
   font-size: 0;
   line-height: 0;
 
   background-color: var(---kvlm-handle-background);
-  color: var(---kvlm-handle-color);
   border: 1px solid var(---kvlm-handle-color);
 
   border-radius: calc(var(---kvlm-handle-size) / 2);
@@ -27,6 +28,7 @@
 
 :host([inverted]) {
   color: var(---kvlm-handle-background);
+
   background-color: var(---kvlm-handle-color);
   border-color: var(---kvlm-handle-background);
 }
